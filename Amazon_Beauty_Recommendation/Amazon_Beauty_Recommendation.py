@@ -2,6 +2,7 @@ import io
 import bz2
 import base64
 import surprise
+import requests
 import pandas as pd
 import streamlit as st
 
@@ -26,16 +27,18 @@ def add_bg():
 add_bg()
 
 
-# Read the compressed data and convert it back to a DataFrame
-with open("https://github.com/satrapankti/Recommender_System/blob/main/Amazon_Beauty_Recommendation/Amazon_Beauty_Recommendation.bz2", "rb") as f:
-    compressed_data = f.read()
+url = "https://github.com/satrapankti/Recommender_System/blob/main/Amazon_Beauty_Recommendation/Amazon_Beauty_Recommendation.bz2"
+response = requests.get(url)    
 
-# Decompress the data using the bz2 algorithm
+# Read the compressed data using the io library
+compressed_data = io.BytesIO(response.content).read()
+
+# Decompress the data
 decompressed_data = bz2.decompress(compressed_data)
 
-# Convert the bytes object back to a DataFrame
-beauty = pd.read_csv(io.StringIO(decompressed_data.decode("utf-8")))
-beauty.head()
+# Convert the decompressed data to a Pandas DataFrame
+beauty = pd.read_csv(io.BytesIO(decompressed_data), encoding='utf-8')
+
 
 # Loading and splitting the data
 reader = Reader(rating_scale = (1, 5))
