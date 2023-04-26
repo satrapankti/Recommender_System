@@ -1,6 +1,4 @@
 pandas
 scikit-learn
 streamlit 
-io
-bz2
 surprise
