@@ -1,6 +1,5 @@
 pandas
 scikit-learn
-sklearn
 streamlit 
 io
 bz2
