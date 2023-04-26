@@ -27,7 +27,7 @@ add_bg()
 
 
 # Read the compressed data and convert it back to a DataFrame
-with open("Amazon_Beauty_Recommendation.bz2", "rb") as f:
+with open("https://github.com/satrapankti/Recommender_System/blob/main/Amazon_Beauty_Recommendation/Amazon_Beauty_Recommendation.bz2?raw=true", "rb") as f:
     compressed_data = f.read()
 
 # Decompress the data using the bz2 algorithm
