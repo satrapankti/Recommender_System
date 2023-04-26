@@ -2,7 +2,7 @@ import io
 import bz2
 import base64
 import surprise
-import requests
+import urllib.request
 import pandas as pd
 import streamlit as st
 
@@ -24,20 +24,24 @@ def add_bg():
             """,
         unsafe_allow_html=True
     )
-add_bg()
+#add_bg()
 
 
-url = "https://github.com/satrapankti/Recommender_System/blob/main/Amazon_Beauty_Recommendation/Amazon_Beauty_Recommendation.bz2"
-response = requests.get(url)    
+@st.cache
+def load_data():
+    url = "https://github.com/satrapankti/Recommender_System/raw/main/Amazon_Beauty_Recommendation/Amazon_Beauty_Recommendation.bz2"
+    response = urllib.request.urlopen(url)
+    compressed_data = response.read()
 
-# Read the compressed data using the io library
-compressed_data = io.BytesIO(response.content).read()
+    decompressed_data = bz2.decompress(compressed_data)
+    data = decompressed_data.decode()
 
-# Decompress the data
-decompressed_data = bz2.decompress(compressed_data)
+    data = [d.split(",") for d in data.split("\n")]
+    data = pd.DataFrame(data[1:], columns=data[0])
+    return data
 
-# Convert the decompressed data to a Pandas DataFrame
-beauty = pd.read_csv(io.BytesIO(decompressed_data), encoding='utf-8')
+beauty = load_data()
+
 
 
 # Loading and splitting the data
