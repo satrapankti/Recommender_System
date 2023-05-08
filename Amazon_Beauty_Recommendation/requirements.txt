@@ -2,5 +2,4 @@ streamlit
 numpy
 pandas
 scikit-learn
-surprise==0.1
-requests 
+surprise
