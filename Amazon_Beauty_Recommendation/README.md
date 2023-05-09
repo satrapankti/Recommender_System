@@ -17,10 +17,10 @@ This file is zip for the final Amazon dataset compressed and compiled as *.bz2* 
 This file contains the overall presentation of the recommendation done.
 
 #### Product_URL.csv
-URL for each Product Type / Category which is been used while web scraping the data using *Selenium*.
+URL for each Product Type / Category which is been used while web scraping the data using *Selenium*. It has columns : **ProductId |  ProductType  |  URL**
 
 ### Url.xlsx
-File contains the scraped URL in various sheets of their Product Type been saved in *.xlsx* format
+File contains the scraped URL in various sheets of their Product Type been saved in *.xlsx* format with column : **url** & **23** sheets of ProductType.
 
 #### Original Dataset from Kaggle - 
 `ratings_Beauty.csv`               : **https://www.kaggle.com/datasets/skillsmuggler/amazon-ratings**                                                              
